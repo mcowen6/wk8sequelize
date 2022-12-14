@@ -1,4 +1,4 @@
-const Movie = require("./table");
+const { Movie, Director } = require("./table");
 const yargs = require("yargs");
 
 exports.createMovie = async (movieObj) => {
@@ -27,3 +27,5 @@ exports.readMovie = async () => {
 //     console.log(error);
 //   }
 // };
+
+//Director table:

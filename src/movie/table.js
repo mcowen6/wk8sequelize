@@ -20,4 +20,22 @@ const Movie = openSequelizeConnection.define("Movie2", {
   },
 });
 
-module.exports = Movie;
+const Director = openSequelizeConnection.define("Director", {
+  director: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  title: {
+    type: DataTypes.STRING,
+    defaultValue: "No Movies",
+  },
+  Age: {
+    type: DataTypes.INTEGER,
+  },
+  movie_count: {
+    type: DataTypes.INTEGER,
+  },
+});
+
+module.exports = { Movie, Director };
