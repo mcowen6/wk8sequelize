@@ -20,6 +20,14 @@ const Movie = openSequelizeConnection.define("Movie2", {
   },
 });
 
+const Actor = openSequelizeConnection.define("Actor", {
+  actor: {
+    type: DataTypes.STRING,
+  },
+});
+Movie.belongsToMany(Actor, { through: "ActorMovies" });
+Actor.belongsToMany(Movie, { through: "ActorMovies" });
+
 const Director = openSequelizeConnection.define("Director", {
   director: {
     type: DataTypes.STRING,
@@ -37,5 +45,6 @@ const Director = openSequelizeConnection.define("Director", {
     type: DataTypes.INTEGER,
   },
 });
-
-module.exports = { Movie, Director };
+Movie.hasOne(Director);
+Director.belongsToMany(Movie, { through: "directorMovies" });
+module.exports = { Movie, Director, Actor };

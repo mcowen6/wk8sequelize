@@ -1,7 +1,7 @@
 const yargs = require("yargs");
 const { openSequelizeConnection } = require("./db/connection");
 const { createMovie, readMovie, updateMovie } = require("./movie/function");
-const Movie = require("./movie/table");
+const { Movie, Director, Actor } = require("./movie/table");
 
 async function app(yargsInput) {
   await openSequelizeConnection.sync();
@@ -39,6 +39,16 @@ async function app(yargsInput) {
     console.log(deleteMovie);
   } else {
     console.log("Unrecognised command");
+  }
+  //director table:
+  if (yargsInput.byDirector) {
+    const moviesDirected = await Director.findAll({
+      where: {
+        director: yargsInput.director,
+      },
+      include: Movie,
+    });
+    console.log(moviesDirected);
   }
 }
 
