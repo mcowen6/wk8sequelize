@@ -31,6 +31,12 @@ async function app(yargsInput) {
     console.log(updateMovie);
   } else if (yargsInput.delete) {
     // put code to delete a movie
+    const deleteMovie = await Movie.destroy({
+      where: {
+        title: yargsInput.title,
+      },
+    });
+    console.log(deleteMovie);
   } else {
     console.log("Unrecognised command");
   }
