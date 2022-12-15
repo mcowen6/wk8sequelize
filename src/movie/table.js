@@ -8,8 +8,8 @@ const Movie = openSequelizeConnection.define("Movie2", {
     allowNull: false,
     unique: true,
   },
-  actor_id: {
-    type: DataTypes.INTEGER,
+  actor: {
+    type: DataTypes.STRING,
 
     // defaultValue: "Not specified",
   },
@@ -21,7 +21,6 @@ const Movie = openSequelizeConnection.define("Movie2", {
     type: DataTypes.INTEGER,
   },
 });
-
 //*ACTOR TABLE:
 const Actor = openSequelizeConnection.define(
   "Actor",
@@ -47,6 +46,7 @@ const Actor = openSequelizeConnection.define(
   { initialAutoIncrement: 50 }
 );
 
+Movie.belongsTo(Actor, { foreignKey: "actor_id" });
 // Movie.belongsToMany(Actor, { through: "ActorMovies" });
 // Actor.belongsToMany(Movie, { through: "ActorMovies" });
 
