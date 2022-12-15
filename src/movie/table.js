@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 const { openSequelizeConnection } = require("../db/connection");
 
 //*MOVIE TABLE:
@@ -11,44 +11,60 @@ const Movie = openSequelizeConnection.define("Movie2", {
   actor: {
     type: DataTypes.STRING,
 
-    // defaultValue: "Not specified",
+    defaultValue: "Not specified",
   },
   director: {
     type: DataTypes.STRING,
-    // defaultValue: "Not specified",
+    defaultValue: "Not specified",
   },
   rating: {
     type: DataTypes.INTEGER,
   },
 });
 //*ACTOR TABLE:
-const Actor = openSequelizeConnection.define(
-  "Actor",
-  {
-    actor: {
-      type: DataTypes.STRING,
-    },
-    actor_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-  },
-  { initialAutoIncrement: 50 }
-);
+// const Actor = openSequelizeConnection.define(
+//   "Actor",
+//   {
+//     actor: {
+//       type: DataTypes.STRING,
+//     },
+//     // actor_id: {
+//     //   type: DataTypes.INTEGER,
+//     //   allowNull: false,
+//     //   primaryKey: true,
+//     //   autoIncrement: true,
+//     // },
+//     age: {
+//       type: DataTypes.INTEGER,
+//       allowNull: true,
+//     },
+//     title: {
+//       type: DataTypes.STRING,
+//       allowNull: true,
+//     },
+//   },
+//   { initialAutoIncrement: 50 }
+// );
 
-Movie.belongsTo(Actor, { foreignKey: "actor_id" });
-// Movie.belongsToMany(Actor, { through: "ActorMovies" });
-// Actor.belongsToMany(Movie, { through: "ActorMovies" });
+// const ActorMovies = openSequelizeConnection.define("ActorMovies", {
+//   MovieId: {
+//     type: DataTypes.INTEGER,
+//     references: {
+//       model: Movie,
+//       key: "id",
+//     },
+//   },
+//   ActorId: {
+//     type: DataTypes.INTEGER,
+//     references: {
+//       model: Actor,
+//       key: "id",
+//     },
+//   },
+// });
+// Movie.belongsTo(Actor, { foreignKey: "actor_id" });
+// Movie.belongsToMany(Actor, { through: ActorMovies });
+// Actor.belongsToMany(Movie, { through: ActorMovies });
 
 // //*DIRECTOR TABLE:
 // const Director = openSequelizeConnection.define("Director", {
@@ -72,4 +88,4 @@ Movie.belongsTo(Actor, { foreignKey: "actor_id" });
 // });
 // Director.hasMany(Movie);
 // Movie.belongsTo(Director, { through: "directorMovies" });
-module.exports = { Movie, Actor };
+module.exports = { Movie };

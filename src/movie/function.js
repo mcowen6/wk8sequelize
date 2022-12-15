@@ -3,10 +3,10 @@ const yargs = require("yargs");
 
 exports.createMovie = async (movieObj) => {
   try {
-    const actorExists = await Actor.findAll({
-      where: { actor: movieObj.actor },
-    });
-    console.log(actorExists);
+    // const actorExists = await Actor.findAll({
+    //   where: { actor: movieObj.actor },
+    // });
+    // console.log(actorExists);
     const newMovie = await Movie.create(movieObj);
     console.log(newMovie);
   } catch (error) {
