@@ -1,10 +1,16 @@
 const yargs = require("yargs");
 const { openSequelizeConnection } = require("./db/connection");
-const { createMovie, readMovie, updateMovie } = require("./movie/function");
+const {
+  createMovie,
+  readMovie,
+  updateMovie,
+  createActor,
+  readActor,
+} = require("./movie/function");
 const { Movie, Director, Actor } = require("./movie/table");
 
 async function app(yargsInput) {
-  await openSequelizeConnection.sync();
+  await openSequelizeConnection.sync({ alter: true });
   if (yargsInput.create) {
     // code to add movie
     await createMovie({
@@ -17,7 +23,8 @@ async function app(yargsInput) {
     // code to list movies
     await readMovie();
   } else if (yargsInput.update) {
-    // code to updte field actor
+    console.log("Entering update");
+    // code to update field actor
     const updateMovie = await Movie.update(
       {
         actor: yargsInput.actor,
@@ -29,6 +36,7 @@ async function app(yargsInput) {
       }
     );
     console.log(updateMovie);
+    // await updateMovie();
   } else if (yargsInput.delete) {
     // put code to delete a movie
     const deleteMovie = await Movie.destroy({
@@ -40,15 +48,28 @@ async function app(yargsInput) {
   } else {
     console.log("Unrecognised command");
   }
-  //director table:
-  if (yargsInput.byDirector) {
-    const moviesDirected = await Director.findAll({
-      where: {
-        director: yargsInput.director,
-      },
-      include: Movie,
+  //!ACTOR:
+  if (yargsInput.createactor) {
+    await createActor({
+      actor: yargsInput.actor,
+      age: yargsInput.age,
+      title: yargsInput.title,
     });
-    console.log(moviesDirected);
+  } else if (yargsInput.readactor) {
+    console.log("Entering read");
+    await readActor();
+  }
+  //director table:
+  if (yargsInput.directorInfo) {
+    // const moviesDirected = await Director.findAll({
+    //   where: {
+    //     director: yargsInput.director,
+    //   },
+    //   include: Movie,
+    // });
+    // console.log(moviesDirected);
+    const movies = await Movie.findAll({ include: Director });
+    console.log(JSON.stringify(movies, null, 2));
   }
 }
 
