@@ -48,8 +48,6 @@ const Actor = openSequelizeConnection.define(
   { initialAutoIncrement: 50 }
 );
 
-
-
 // Movie.belongsTo(Actor, { foreignKey: "actor_id" });
 // Movie.belongsToMany(Actor, { through: ActorMovies });
 // Actor.belongsToMany(Movie, { through: ActorMovies });
@@ -76,4 +74,4 @@ const Actor = openSequelizeConnection.define(
 // });
 // Director.hasMany(Movie);
 // Movie.belongsTo(Director, { through: "directorMovies" });
-module.exports = { Movie };
+module.exports = { Movie, Actor };
