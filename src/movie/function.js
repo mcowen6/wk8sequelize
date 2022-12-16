@@ -55,24 +55,6 @@ exports.readMovie = async () => {
   }
 };
 
-// exports.updateMovie = async (yargsInput) => {
-//   try {
-//     const updateMovie = await Movie.update(
-//       {
-//         actor: yargsInput.actor,
-//       },
-//       {
-//         where: {
-//           title: yargsInput.title,
-//         },
-//       }
-//     );
-//     console.log(updateMovie);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 //Actor table:
 exports.createActor = async (actorObj) => {
   try {
