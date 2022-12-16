@@ -8,8 +8,8 @@ const Movie = openSequelizeConnection.define("Movie2", {
     allowNull: false,
     unique: true,
   },
-  actor: {
-    type: DataTypes.STRING,
+  actor_id: {
+    type: DataTypes.INTEGER,
 
     defaultValue: "Not specified",
   },
@@ -22,46 +22,34 @@ const Movie = openSequelizeConnection.define("Movie2", {
   },
 });
 //*ACTOR TABLE:
-// const Actor = openSequelizeConnection.define(
-//   "Actor",
-//   {
-//     actor: {
-//       type: DataTypes.STRING,
-//     },
-//     // actor_id: {
-//     //   type: DataTypes.INTEGER,
-//     //   allowNull: false,
-//     //   primaryKey: true,
-//     //   autoIncrement: true,
-//     // },
-//     age: {
-//       type: DataTypes.INTEGER,
-//       allowNull: true,
-//     },
-//     title: {
-//       type: DataTypes.STRING,
-//       allowNull: true,
-//     },
-//   },
-//   { initialAutoIncrement: 50 }
-// );
 
-// const ActorMovies = openSequelizeConnection.define("ActorMovies", {
-//   MovieId: {
-//     type: DataTypes.INTEGER,
-//     references: {
-//       model: Movie,
-//       key: "id",
-//     },
-//   },
-//   ActorId: {
-//     type: DataTypes.INTEGER,
-//     references: {
-//       model: Actor,
-//       key: "id",
-//     },
-//   },
-// });
+const Actor = openSequelizeConnection.define(
+  "Actor",
+  {
+    actor: {
+      type: DataTypes.STRING,
+      unique: true,
+    },
+    actor_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+  },
+  { initialAutoIncrement: 50 }
+);
+
+
+
 // Movie.belongsTo(Actor, { foreignKey: "actor_id" });
 // Movie.belongsToMany(Actor, { through: ActorMovies });
 // Actor.belongsToMany(Movie, { through: ActorMovies });
