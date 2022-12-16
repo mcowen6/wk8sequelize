@@ -8,8 +8,8 @@ const Movie = openSequelizeConnection.define("Movie2", {
     allowNull: false,
     unique: true,
   },
-  actor: {
-    type: DataTypes.STRING,
+  actor_id: {
+    type: DataTypes.INTEGER,
 
     // defaultValue: "Not specified",
   },
@@ -27,6 +27,7 @@ const Actor = openSequelizeConnection.define(
   {
     actor: {
       type: DataTypes.STRING,
+      unique: true,
     },
     actor_id: {
       type: DataTypes.INTEGER,

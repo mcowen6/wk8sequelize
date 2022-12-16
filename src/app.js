@@ -10,7 +10,7 @@ const {
 const { Movie, Director, Actor } = require("./movie/table");
 
 async function app(yargsInput) {
-  await openSequelizeConnection.sync({ alter: true });
+  await openSequelizeConnection.sync();
   if (yargsInput.create) {
     // code to add movie
     await createMovie({
@@ -53,24 +53,23 @@ async function app(yargsInput) {
     await createActor({
       actor: yargsInput.actor,
       age: yargsInput.age,
-      title: yargsInput.title,
     });
   } else if (yargsInput.readactor) {
     console.log("Entering read");
     await readActor();
   }
   //director table:
-  if (yargsInput.directorInfo) {
-    // const moviesDirected = await Director.findAll({
-    //   where: {
-    //     director: yargsInput.director,
-    //   },
-    //   include: Movie,
-    // });
-    // console.log(moviesDirected);
-    const movies = await Movie.findAll({ include: Director });
-    console.log(JSON.stringify(movies, null, 2));
-  }
+  // if (yargsInput.directorInfo) {
+  // const moviesDirected = await Director.findAll({
+  //   where: {
+  //     director: yargsInput.director,
+  //   },
+  //   include: Movie,
+  // });
+  // console.log(moviesDirected);
+  //   const movies = await Movie.findAll({ include: Director });
+  //   console.log(JSON.stringify(movies, null, 2));
+  // }
 }
 
 app(yargs.argv);
