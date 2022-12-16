@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 const { openSequelizeConnection } = require("../db/connection");
 
 //*MOVIE TABLE:
@@ -11,17 +11,18 @@ const Movie = openSequelizeConnection.define("Movie2", {
   actor_id: {
     type: DataTypes.INTEGER,
 
-    // defaultValue: "Not specified",
+    defaultValue: "Not specified",
   },
   director: {
     type: DataTypes.STRING,
-    // defaultValue: "Not specified",
+    defaultValue: "Not specified",
   },
   rating: {
     type: DataTypes.INTEGER,
   },
 });
 //*ACTOR TABLE:
+
 const Actor = openSequelizeConnection.define(
   "Actor",
   {
@@ -47,9 +48,11 @@ const Actor = openSequelizeConnection.define(
   { initialAutoIncrement: 50 }
 );
 
-Movie.belongsTo(Actor, { foreignKey: "actor_id" });
-// Movie.belongsToMany(Actor, { through: "ActorMovies" });
-// Actor.belongsToMany(Movie, { through: "ActorMovies" });
+
+
+// Movie.belongsTo(Actor, { foreignKey: "actor_id" });
+// Movie.belongsToMany(Actor, { through: ActorMovies });
+// Actor.belongsToMany(Movie, { through: ActorMovies });
 
 // //*DIRECTOR TABLE:
 // const Director = openSequelizeConnection.define("Director", {
@@ -73,4 +76,4 @@ Movie.belongsTo(Actor, { foreignKey: "actor_id" });
 // });
 // Director.hasMany(Movie);
 // Movie.belongsTo(Director, { through: "directorMovies" });
-module.exports = { Movie, Actor };
+module.exports = { Movie };

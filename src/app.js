@@ -70,6 +70,7 @@ async function app(yargsInput) {
   //   const movies = await Movie.findAll({ include: Director });
   //   console.log(JSON.stringify(movies, null, 2));
   // }
+
 }
 
 app(yargs.argv);

@@ -4,6 +4,7 @@ const { openSequelizeConnection } = require("../db/connection");
 
 exports.createMovie = async (movieObj) => {
   try {
+
     const actorExists = await Actor.findAll({
       where: { actor: movieObj.actor },
     });
@@ -36,6 +37,7 @@ exports.createMovie = async (movieObj) => {
       }
     }
     // console.log(actorExists, "Actor exists");
+
   } catch (error) {
     console.log(error);
   }
